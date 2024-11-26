@@ -1,0 +1,82 @@
+﻿@model TallerCrudVentas.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .formEdit{
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .control-label{
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: 20px;
+    }
+
+    .form-group{
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        font-weight: 500;
+        margin-left: 14px;
+    }
+
+    .formEdit dl {
+        width: 100%;
+        border: 1px solid black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-color: white; /* Asegúrate de que el fondo no sea transparente */
+    }
+    
+</style>
+
+<!-- Titulo -->
+<h1>Detalles del producto</h1>
+<hr />
+
+<div class="formEdit">
+    <dl class="row">
+        <dt class = "col-sm-2 control-label">
+            @Html.DisplayNameFor(model => model.Nombre):
+        </dt>
+        <dd class = "col-sm-10 form-control">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2 control-label">
+            @Html.DisplayNameFor(model => model.Precio):
+        </dt>
+        <dd class = "col-sm-10 form-control">
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+        <dt class = "col-sm-2 control-label">
+            @Html.DisplayNameFor(model => model.Stock):
+        </dt>
+        <dd class = "col-sm-10 form-control">
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+        <dd>        
+            <button type="button" class="btn btn-dark" style="margin-top: 10px;">
+                <a asp-action="Edit" asp-route-id="@Model?.ProductoId" style="color: white; text-decoration: none;">Editar</a>
+            </button>    
+            <button type="button" class="btn btn-dark" style="margin-top: 10px;">
+                <a asp-action="Index" style="color: white; text-decoration: none;">Volver a la lista</a>
+            </button>
+        </dd>
+    </dl>
+</div>

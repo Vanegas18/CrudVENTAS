@@ -1,0 +1,124 @@
+﻿@model TallerCrudVentas.Models.Venta
+
+@{
+    ViewData["Title"] = "Detalles de la venta";
+}
+
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .formEdit{
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .control-label{
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: 20px;
+    }
+
+    .form-group{
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        font-weight: 500;
+        margin-left: 14px;
+    }
+
+    .formEdit dl {
+        width: 100%;
+        border: 1px solid black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-color: white; /* Asegúrate de que el fondo no sea transparente */
+    }
+</style>
+
+<!-- Titulo -->
+<h1>Detalles de la venta</h1>
+<hr />
+
+<div class="formEdit">
+    
+    <dl class="row">
+
+        <dt class="col-sm-2 control-label">Cliente</dt>
+        <dd class="col-sm-10 form-control">
+            @Model.Cliente.Nombre
+        </dd>
+        <dt class="col-sm-2 control-label">
+            Fecha
+        </dt>
+        <dd class="col-sm-10 form-control">
+            @Model.Fecha.ToString("dd/MM/yyyy")
+            @* @Html.DisplayFor(model => model.Fecha) *@
+        </dd>
+        <dt class="col-sm-2 control-label">
+            Total
+            @* @Html.DisplayNameFor(model => model.Total) *@
+        </dt>
+        <dd class="col-sm-10 form-control">
+            @Model.Total.ToString("C", new System.Globalization.CultureInfo("es-CO"))
+            @* @Html.DisplayFor(model => model.Total) *@
+        </dd>
+        @* Titulo para el estado de venta *@
+        <dt class="col-sm-2 control-label">Estado</dt>
+        <dd class="col-sm-10 form-control">
+            @Model.Estado
+            @* Muestra el nombre del cliente *@
+            @*  @Html.DisplayFor(model => model.Cliente.ClienteId) *@
+        </dd>
+
+        <h3 style="margin-top: 30px;">Detalle de los productos</h3>
+        <table class="table">
+            @* Tabla para mostrar los detalles de productos *@
+            <thead>
+                <tr>
+                    @* Encabezados de las columnas *@
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detalle in Model.DetalleVenta)//Itera sobre cada detalle de la venta
+                {
+                    <tr>
+                        <td>@detalle.Producto.Nombre</td>
+                        <td>@detalle.Cantidad</td>
+                        <td>@detalle.Precio.ToString("C", new System.Globalization.CultureInfo("es-CO"))</td>
+                        <td>@detalle.SubTotal.ToString("C", new System.Globalization.CultureInfo("es-CO"))</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <button type="button" class="btn btn-dark" style="margin-top: 10px;">
+                <a asp-action="Edit" asp-route-id="@Model?.VentaId" style="color: white; text-decoration: none;">Editar</a>
+            </button>
+            <button type="button" class="btn btn-dark" style="margin-top: 10px;">
+                <a asp-action="Index" style="color: white; text-decoration: none;">Volver a la lista</a>
+            </button>
+        </div>
+
+
+
+    </dl>
+</div>
+
+
+

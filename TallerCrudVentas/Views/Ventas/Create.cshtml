@@ -1,0 +1,173 @@
+﻿@model TallerCrudVentas.Models.Venta
+
+@{
+    ViewData["Title"] = "Crear venta";
+}
+
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .formEdit{
+        display: flex;
+        justify-content: center;
+    }
+
+    .control-label{
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .form-group{
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        font-weight: 500;
+    }
+</style>
+
+<!-- Añadir venta  -->
+<h1>Añadir venta</h1>
+<hr />
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="ClienteId" class="control-label">Cliente</label>
+        <select asp-for="ClienteId" class="form-control">
+            <option value="">Seleccione un cliente</option>
+            @foreach (var item in ViewBag.Clientes)
+            {
+                <option value="@item.ClienteId">@item.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="detalles">
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <label>Producto</label>
+        <select id="producto" class="form-control">
+            <option value="">Seleccione un producto</option>
+            @foreach (var item in ViewBag.Productos)
+            {
+                <option value="@item.ProductoId" data-precio="@item.Precio" data-stock="@item.Stock">@item.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Cantidad</label>
+        <input type="number" id="cantidad" class="form-control" min="1" />
+    </div>
+
+    <button type="button" id="agregarProducto" class="btn btn-dark">Agregar Producto</button>
+
+    <div class="form-group">
+        <label style="font-size: 25px; font-weight: bold;">Total:</label>
+        <span id="total" style="font-size: 25px;">0.00</span>
+        <input type="hidden" id="totalHidden" name="Total" value="0.00" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Venta</button>
+    <button type="button" class="btn btn-dark">
+        <a asp-action="Index" style="color: white; text-decoration: none;">Cancelar</a>
+    </button>
+</form>
+
+<script>
+    let total = 0; // Variable para almacenar el total
+    let detalleIndex = 0; // Índice para los detalles de la venta
+
+    // Lógica para agregar productos
+    document.getElementById('agregarProducto').addEventListener('click', function () {
+        let productoSelect = document.getElementById('producto');
+        let productoId = productoSelect.value;
+        let productoNombre = productoSelect.options[productoSelect.selectedIndex].text;
+        let precio = parseFloat(productoSelect.options[productoSelect.selectedIndex].getAttribute('data-precio'));
+        let cantidad = parseInt(document.getElementById('cantidad').value);
+
+        if (productoId && cantidad > 0) {
+            // Obtener el stock del producto
+            let stock = parseInt(productoSelect.options[productoSelect.selectedIndex].getAttribute('data-stock'));
+
+            // Validar si la cantidad solicitada es mayor que el stock disponible
+            if (cantidad > stock) {
+                SweetAlert.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: `No hay suficiente stock para el producto ${productoNombre}. Solo hay ${stock} disponibles.`
+                });
+                return; // Salir de la función si hay un error
+            }
+
+            // Calcular el subtotal
+            let subtotal = precio * cantidad; // Calcular subtotal sin formatear
+            total += subtotal; // Sumar al total
+
+            // Formatear los valores de precio y subtotal a 2 decimales
+            let precioFormateado = precio.toFixed(2);
+            let subtotalFormateado = subtotal.toFixed(2);
+
+            // Añadir la fila con los valores formateados
+            let fila = `<tr>
+                            <td>${productoNombre}</td>
+                            <td>${cantidad}</td>
+                            <td>${precioFormateado}</td>
+                            <td>${subtotalFormateado}</td>
+                            <td><button type="button" class="btn btn-danger btn-sm eliminarProducto">Eliminar</button></td>
+                            <input type="hidden" name="Detalles[${detalleIndex}].ProductoId" value="${productoId}" />
+                            <input type="hidden" name="Detalles[${detalleIndex}].Cantidad" value="${cantidad}" />
+                            <input type="hidden" name="Detalles[${detalleIndex}].Precio" value="${precioFormateado}" />
+                            <input type="hidden" name="Detalles[${detalleIndex}].Subtotal" value="${subtotalFormateado}" />
+                        </tr>`;
+
+            document.getElementById('detalles').insertAdjacentHTML('beforeend', fila);
+            document.getElementById('total').textContent = total.toFixed(2); // Mostrar total con 2 decimales
+
+            // Multiplicar el total por 100 y convertir a entero
+            document.getElementById('totalHidden').value = Math.round(total); // Valor para enviar al backend
+
+            detalleIndex++;
+
+            
+        } else {
+            alert("Por favor, seleccione un producto y una cantidad válida.");
+        }
+
+        
+    });
+
+    // Lógica para eliminar productos
+    document.getElementById('detalles').addEventListener('click', function (e) {
+        if (e.target.classList.contains('eliminarProducto')) {
+            let fila = e.target.closest('tr');
+            let subtotal = parseFloat(fila.querySelector('td:nth-child(4)').textContent);
+            total -= subtotal; // Restar el subtotal del total
+            fila.remove(); // Eliminar la fila
+            document.getElementById('total').textContent = total.toFixed(2); // Actualizar total
+
+            // Actualizar el total oculto
+            document.getElementById('totalHidden').value = Math.round(total); // Actualizar valor oculto
+        }
+    });
+</script>
+
+
+
+

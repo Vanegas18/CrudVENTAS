@@ -1,0 +1,98 @@
+﻿@model TallerCrudVentas.Models.Producto
+
+@{
+    ViewData["Title"] = "Editar producto";
+}
+
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .formEdit{
+        display: flex;
+        justify-content: center;
+    }
+
+    .control-label{
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .form-group{
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        font-weight: 500;
+    }
+    
+</style>
+
+<!-- Editar producto  -->
+<h1>Editar producto</h1>
+<hr />
+
+<!-- Formulario para editar producto -->
+<div class="row formEdit">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductoId" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stock" class="control-label"></label>
+                <input asp-for="Stock" class="form-control" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <button type="button" class="btn btn-dark">
+                    <a asp-action="Index" style="color: white; text-decoration: none;">Cancelar</a>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = this; //- Guardamos el formulario en una variable
+            if (form.checkValidity()) {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'El producto ha sido editado correctamente.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor, corrige los errores en el formulario.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                form.reportValidity();
+            }
+        });
+    </script>
+}

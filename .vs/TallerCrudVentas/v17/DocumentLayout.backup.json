@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ADMIN\\Documents\\PROGRAMACION\\SENA\\TRIMESTRE 5\\.NET\\C#\\TallerCrudVentas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ADMIN\\Documents\\PROGRAMACION\\SENA\\TRIMESTRE 5\\.NET\\C#\\TallerCrudVentas\\TallerCrudVentas\\Migrations\\20241123051957_ActualizacionNumerosNombre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TallerCrudVentas\\Migrations\\20241123051957_ActualizacionNumerosNombre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{993895BD-8A9E-4286-B574-ECD53F16552D}|TallerCrudVentas\\TallerCrudVentas.csproj|c:\\users\\admin\\documents\\programacion\\sena\\trimestre 5\\.net\\c#\\tallercrudventas\\tallercrudventas\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{993895BD-8A9E-4286-B574-ECD53F16552D}|TallerCrudVentas\\TallerCrudVentas.csproj|solutionrelative:tallercrudventas\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20241123051957_ActualizacionNumerosNombre.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\PROGRAMACION\\SENA\\TRIMESTRE 5\\.NET\\C#\\TallerCrudVentas\\TallerCrudVentas\\Migrations\\20241123051957_ActualizacionNumerosNombre.cs",
+              "RelativeDocumentMoniker": "TallerCrudVentas\\Migrations\\20241123051957_ActualizacionNumerosNombre.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\PROGRAMACION\\SENA\\TRIMESTRE 5\\.NET\\C#\\TallerCrudVentas\\TallerCrudVentas\\Migrations\\20241123051957_ActualizacionNumerosNombre.cs",
+              "RelativeToolTip": "TallerCrudVentas\\Migrations\\20241123051957_ActualizacionNumerosNombre.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T05:19:59.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\PROGRAMACION\\SENA\\TRIMESTRE 5\\.NET\\C#\\TallerCrudVentas\\TallerCrudVentas\\Models\\Producto.cs",
+              "RelativeDocumentMoniker": "TallerCrudVentas\\Models\\Producto.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\PROGRAMACION\\SENA\\TRIMESTRE 5\\.NET\\C#\\TallerCrudVentas\\TallerCrudVentas\\Models\\Producto.cs",
+              "RelativeToolTip": "TallerCrudVentas\\Models\\Producto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T05:18:31.158Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
