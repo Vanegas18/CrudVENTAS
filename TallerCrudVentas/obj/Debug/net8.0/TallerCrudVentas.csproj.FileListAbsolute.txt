@@ -282,3 +282,4 @@ C:\Users\ADMIN\Documents\PROGRAMACION\SENA\TRIMESTRE 5\.NET\C#\TallerCrudVentas\
 C:\Users\ADMIN\Documents\PROGRAMACION\SENA\TRIMESTRE 5\.NET\C#\TallerCrudVentas\TallerCrudVentas\obj\Debug\net8.0\TallerCrudVentas.pdb
 C:\Users\ADMIN\Documents\PROGRAMACION\SENA\TRIMESTRE 5\.NET\C#\TallerCrudVentas\TallerCrudVentas\obj\Debug\net8.0\TallerCrudVentas.genruntimeconfig.cache
 C:\Users\ADMIN\Documents\PROGRAMACION\SENA\TRIMESTRE 5\.NET\C#\TallerCrudVentas\TallerCrudVentas\obj\Debug\net8.0\ref\TallerCrudVentas.dll
+C:\Users\ADMIN\Documents\PROGRAMACION\SENA\TRIMESTRE 5\.NET\C#\TallerCrudVentas\TallerCrudVentas\obj\Debug\net8.0\TallerCrudVentas.sourcelink.json

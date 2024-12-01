@@ -120,9 +120,9 @@
             let subtotal = precio * cantidad; // Calcular subtotal sin formatear
             total += subtotal; // Sumar al total
 
-            // Formatear los valores de precio y subtotal a 2 decimales
-            let precioFormateado = precio.toFixed(2);
-            let subtotalFormateado = subtotal.toFixed(2);
+            // Formatear los valores de precio y subtotal con separadores de miles
+            let precioFormateado = precio.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            let subtotalFormateado = subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
             // Añadir la fila con los valores formateados
             let fila = `<tr>
@@ -133,34 +133,30 @@
                             <td><button type="button" class="btn btn-danger btn-sm eliminarProducto">Eliminar</button></td>
                             <input type="hidden" name="Detalles[${detalleIndex}].ProductoId" value="${productoId}" />
                             <input type="hidden" name="Detalles[${detalleIndex}].Cantidad" value="${cantidad}" />
-                            <input type="hidden" name="Detalles[${detalleIndex}].Precio" value="${precioFormateado}" />
-                            <input type="hidden" name="Detalles[${detalleIndex}].Subtotal" value="${subtotalFormateado}" />
+                            <input type="hidden" name="Detalles[${detalleIndex}].Precio" value="${precio.toFixed(2)}" />
+                            <input type="hidden" name="Detalles[${detalleIndex}].Subtotal" value="${subtotal.toFixed(2)}" />
                         </tr>`;
 
             document.getElementById('detalles').insertAdjacentHTML('beforeend', fila);
-            document.getElementById('total').textContent = total.toFixed(2); // Mostrar total con 2 decimales
+            document.getElementById('total').textContent = total.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); // Mostrar total con separadores de miles
 
             // Multiplicar el total por 100 y convertir a entero
             document.getElementById('totalHidden').value = Math.round(total); // Valor para enviar al backend
 
             detalleIndex++;
-
-            
         } else {
             alert("Por favor, seleccione un producto y una cantidad válida.");
         }
-
-        
     });
 
     // Lógica para eliminar productos
     document.getElementById('detalles').addEventListener('click', function (e) {
         if (e.target.classList.contains('eliminarProducto')) {
             let fila = e.target.closest('tr');
-            let subtotal = parseFloat(fila.querySelector('td:nth-child(4)').textContent);
+            let subtotal = parseFloat(fila.querySelector('td:nth-child(4)').textContent.replace(/\./g, '').replace(',', '.'));
             total -= subtotal; // Restar el subtotal del total
             fila.remove(); // Eliminar la fila
-            document.getElementById('total').textContent = total.toFixed(2); // Actualizar total
+            document.getElementById('total').textContent = total.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); // Actualizar total
 
             // Actualizar el total oculto
             document.getElementById('totalHidden').value = Math.round(total); // Actualizar valor oculto
